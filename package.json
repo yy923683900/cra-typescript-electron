@@ -1,0 +1,85 @@
+{
+  "name": "cra-typescript-electron",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yy923683900/cra-typescript-electron"
+  },
+  "author": {
+    "name": "yangyi",
+    "email": "chrisyoung1314@163.com"
+  },
+  "main": "public/electron.js",
+  "scripts": {
+    "react-start": "react-scripts start",
+    "electron-start": "electron .",
+    "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000/ && npm run electron-start\"",
+    "react-build": "react-scripts build",
+    "electron-build-win": "electron-builder build -w",
+    "electron-build-mac": "electron-builder build -m",
+    "build-win": "npm run react-build && npm run electron-build-win",
+    "build-mac": "npm run react-build && npm run electron-build-mac",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "electron-is-dev": "^1.0.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "2.1.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "concurrently": "^4.1.0",
+    "electron": "^4.0.0",
+    "electron-builder": "^20.38.4",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
+    "node-sass": "^4.11.0",
+    "prettier": "^1.15.3",
+    "typescript": "^3.2.2",
+    "wait-on": "^3.2.0"
+  },
+  "build": {
+    "productName": "cra-typescript-electron",
+    "appId": "com.cra-typescript-electron",
+    "directories": {
+      "buildResources": "public/icons"
+    },
+    "mac": {
+      "category": "productivity",
+      "target": "dmg",
+      "icon": "icon.icns"
+    },
+    "win": {
+      "icon": "icon.ico",
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
